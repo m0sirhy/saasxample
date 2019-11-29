@@ -11,6 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware('auth')->group(function () {
+
+Route::post('/Course', 'CourseController@save');
+Route::get('/dashboard', 'DashboardController@index');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/Student', 'StudentController@index');
+Route::post('/Student', 'StudentController@save');
+Route::post('/drop', 'StudentController@drop');
