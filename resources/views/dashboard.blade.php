@@ -10,8 +10,10 @@
 </head>
 
 <body>
+
     <div>Welcome User: </div>
     <br>
+    <img src=" {{Storage::get('public-uploads/', $portfolio->picture) }}">
     <div> Total hours: </div>
     <br>
 

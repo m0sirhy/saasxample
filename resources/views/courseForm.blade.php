@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -15,17 +14,27 @@
     <form action="/Course" method="POST">
         @csrf
     Course name
-    <input type="text" name="student_id" value="{{$id}}" hidden> Course Instractour
 
-    <input type="text" name="name"> Course Instractour
+    <input type="text" name="name"> 
+    <br>
+    Course Instractour
 
 
-    <input type="text" name="instractor"> Course Hours
+    <input type="text" name="instractor"> 
+    <br>
+
+    Course Hours
     <input type="text" name="hours">
+    <br>
+
     Course grade
     <input type="text" name="grade">
+    <br>
+
     year
     <input type="year" name="year">
+    <br>
+
     Semster 
     <select>
            
