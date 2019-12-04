@@ -13,7 +13,6 @@ class DashboardController extends Controller
     function index ()
     {
      //$course=Course::find(1)->student;
-     $id=Auth::id();
      $Student = Student::where('user_id',$id)->get();
     //
     $course = Student::find()->course;

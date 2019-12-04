@@ -35,7 +35,16 @@ class StudentController extends Controller
             $file = $request->file('birimage'); //file src
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
-            $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $imageName);
+            $is_file_uploaded = $file->storeAs(
+                'public-uploads/',$imageName, 'dropbox'
+            );
+                        if ($is_file_uploaded) {
+                toast('Your Data as been submited!', 'success');
+    
+            } else {
+                toast('Your Data failed submited!', 'success');
+    
+            }
             $student->birimage = $imageName;
           }
           //id image
@@ -43,7 +52,19 @@ class StudentController extends Controller
             $file = $request->file('idimage'); //file src
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
-            $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $imageName);
+           // $is_file_uploaded = Storage::disk('dropbox')->storeAs('imageName')->put('public-uploads', $imageName);
+           $is_file_uploaded = $file->storeAs(
+            'public-uploads/',$imageName, 'dropbox'
+        );
+        
+        
+            if ($is_file_uploaded) {
+                toast('Your Data as been submited!', 'success');
+    
+            } else {
+                toast('Your Data failed submited!', 'success');
+    
+            }
             $student->idimage = $imageName;
           }
           //Personal image
@@ -51,32 +72,45 @@ class StudentController extends Controller
             $file = $request->file('pimage'); //file src
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
-            $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $imageName);
+         //   $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $file);
+         $is_file_uploaded = $file->storeAs(
+            'public-uploads/',$imageName, 'dropbox'
+        );
+            
+        if ($is_file_uploaded) {
+            toast('Your Data as been submited!', 'success');
+
+        } else {
+            toast('Your Data failed submited!', 'success');
+
+        }
             $student->pimage = $imageName;
           }
         $student->spec = $request->spec;
         $student->price = $request->price;
         $student->save();
-        toast('Your Data as been submited!', 'success');
+        // toast('Your Data as been submited!', 'success');
+        // toast('Your Data failed submited!', 'success');
+
         return view('courseform');
     }
 
     public function payment(Request $request)
     {
-        $student = App\student::find($request->id);
+        $student = App\Student::find($request->id);
         $student->payment = $request->payment;
         $student->save();
     }
 
-    public function drop(Request $RequestInput)
-    {
-        $file_src = $RequestInput->file("upload_file"); //file src
-        $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $file_src);
+    // public function drop(Request $RequestInput)
+    // {
+    //     $file_src = $RequestInput->file("upload_file"); //file src
+    //     $is_file_uploaded = Storage::disk('dropbox')->storeAs('')->put('public-uploads', $file_src);
 
-        if ($is_file_uploaded) {
-            return Redirect::back()->withErrors(['msg' => 'Succesfuly file uploaded to dropbox']);
-        } else {
-            return Redirect::back()->withErrors(['msg' => 'file failed to uploaded on dropbox']);
-        }
-    }
+    //     if ($is_file_uploaded) {
+    //         return Redirect::back()->withErrors(['msg' => 'Succesfuly file uploaded to dropbox']);
+    //     } else {
+    //         return Redirect::back()->withErrors(['msg' => 'file failed to uploaded on dropbox']);
+    //     }
+    // }
 }
