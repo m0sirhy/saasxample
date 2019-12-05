@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form action="/Student" method="POST"  enctype="multipart/form-data">
+    <form action="/Student" method="POST"  id="upload_form"  enctype="multipart/form-data">
         @csrf
         <input type="text" name="user_id" value="1" > 
         
@@ -74,5 +74,8 @@
         <input type="submit" value="Upload to Dropbox" />
 </form> --}}
 </body>
+
+
+    
 
 </html>

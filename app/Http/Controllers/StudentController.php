@@ -19,7 +19,7 @@ class StudentController extends Controller
 
     public function save(Request $request)
     {
-        //   dd(  $request->hasFile('pimage'));
+     
         $student = new Student();
        // $student->user_id = Auth::id();
         $student->user_id =1;
@@ -38,13 +38,6 @@ class StudentController extends Controller
             $is_file_uploaded = $file->storeAs(
                 'public-uploads/',$imageName, 'dropbox'
             );
-                        if ($is_file_uploaded) {
-                toast('Your Data as been submited!', 'success');
-    
-            } else {
-                toast('Your Data failed submited!', 'success');
-    
-            }
             $student->birimage = $imageName;
           }
           //id image
@@ -56,16 +49,9 @@ class StudentController extends Controller
            $is_file_uploaded = $file->storeAs(
             'public-uploads/',$imageName, 'dropbox'
         );
+        $student->idimage = $imageName;
+
         
-        
-            if ($is_file_uploaded) {
-                toast('Your Data as been submited!', 'success');
-    
-            } else {
-                toast('Your Data failed submited!', 'success');
-    
-            }
-            $student->idimage = $imageName;
           }
           //Personal image
           if ($request->hasFile('pimage')) {
@@ -76,16 +62,11 @@ class StudentController extends Controller
          $is_file_uploaded = $file->storeAs(
             'public-uploads/',$imageName, 'dropbox'
         );
-            
-        if ($is_file_uploaded) {
-            toast('Your Data as been submited!', 'success');
+        $student->pimage = $imageName;
+ 
 
-        } else {
-            toast('Your Data failed submited!', 'success');
-
-        }
-            $student->pimage = $imageName;
           }
+
         $student->spec = $request->spec;
         $student->price = $request->price;
         $student->save();
