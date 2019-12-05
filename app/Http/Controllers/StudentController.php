@@ -73,7 +73,7 @@ class StudentController extends Controller
         // toast('Your Data as been submited!', 'success');
         // toast('Your Data failed submited!', 'success');
 
-        return view('courseform');
+        return view('courseForm');
     }
 
     public function payment(Request $request)
