@@ -28,4 +28,7 @@ Route::post('/Student', 'StudentController@save');
 Route::post('/drop', 'StudentController@drop');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/Course', 'CourseController@save');
+Route::get('/ajax', 'ajaxController@index');
+
+Route::post('/ajax_upload/action', 'ajaxController@action')->name('ajaxupload.action');
 ?>
