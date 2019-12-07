@@ -14,15 +14,14 @@ class StudentController extends Controller
     //
     public function index()
     {
-        return view('fourm');
+        return view('template.SForm');
     }
 
     public function save(Request $request)
     {
      
         $student = new Student();
-       // $student->user_id = Auth::id();
-        $student->user_id =1;
+        $student->user_id = Auth::id();
         $student->fname = $request->fname;
         $student->lname = $request->lname;
         $student->phone = $request->phone;
@@ -36,9 +35,10 @@ class StudentController extends Controller
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
             $is_file_uploaded = $file->storeAs(
-                'public-uploads/',$imageName, 'dropbox'
+                'public-uploads',$imageName, 'dropbox'
             );
             $student->birimage = $imageName;
+
           }
           //id image
           if ($request->hasFile('idimage')) {
@@ -70,28 +70,18 @@ class StudentController extends Controller
         $student->spec = $request->spec;
         $student->price = $request->price;
         $student->save();
-        // toast('Your Data as been submited!', 'success');
-        // toast('Your Data failed submited!', 'success');
+        toast('Your Data as been submited!', 'success');
+       
 
-        return view('courseForm');
+        return view('template.CForm');
     }
 
     public function payment(Request $request)
     {
-        $student = App\Student::find($request->id);
+        $student=new Student();
+      $student::find($request->id);
         $student->payment = $request->payment;
         $student->save();
     }
 
-    // public function drop(Request $RequestInput)
-    // {
-    //     $file_src = $RequestInput->file("upload_file"); //file src
-    //     $is_file_uploaded = Storage::disk('dropbox')->storeAs('')->put('public-uploads', $file_src);
-
-    //     if ($is_file_uploaded) {
-    //         return Redirect::back()->withErrors(['msg' => 'Succesfuly file uploaded to dropbox']);
-    //     } else {
-    //         return Redirect::back()->withErrors(['msg' => 'file failed to uploaded on dropbox']);
-    //     }
-    // }
 }

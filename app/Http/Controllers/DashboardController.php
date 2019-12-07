@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Student;
+
 use App\Course;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,12 +14,16 @@ class DashboardController extends Controller
     //
     function index ()
     {
-     //$course=Course::find(1)->student;
-     $Student = Student::where('user_id',$id)->get();
-    //
-    $course = Student::find()->course;
+     // dd( $url = Storage::url('2019-12-05-14-12-27_1.png'));
 
-        return view('dashboard',compact('$Student'));
+     $course=Course::find(1)->student;
+    $id= Auth::id();
+     $Student = Student::where('user_id',$id)->get()->first();
+     $course=Course::find(1)->student;
+   $im=  $Student->idimage;
+
+
+        return view('template.Dashboard',compact('Student','course'));
     }
 
 }

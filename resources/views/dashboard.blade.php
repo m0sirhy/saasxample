@@ -11,9 +11,11 @@
 
 <body>
 
-    <div>Welcome User: </div>
+<div>Welcome User: {{$Student->fname}} , {{$Student->lname}}</div>
     <br>
-    <img src=" {{Storage::get('public-uploads/', $portfolio->picture) }}">
+   {{ dd(     Storage::disk('dropbox')->exists($Student->idimage))}}
+
+<img src="">
     <div> Total hours: </div>
     <br>
 

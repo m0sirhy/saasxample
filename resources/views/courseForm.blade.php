@@ -36,7 +36,7 @@
     <br>
 
     Semster 
-    <select>
+    <select name="semester">
            
             <option value="fsemester">first semester</option>
             <option value="ssemester">second semester</option>

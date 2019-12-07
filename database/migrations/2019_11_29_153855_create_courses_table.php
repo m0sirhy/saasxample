@@ -21,6 +21,8 @@ class CreateCoursesTable extends Migration
             $table->string('hours');
             $table->string('instractor');
             $table->string('semester');
+            $table->string('year');
+
             $table->integer('grade');
             $table->timestamps();
         });
