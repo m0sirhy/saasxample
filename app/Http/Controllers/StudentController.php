@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class StudentController extends Controller
 {
@@ -34,8 +35,10 @@ class StudentController extends Controller
             $file = $request->file('birimage'); //file src
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
+            $is_file_uploaded_local = $file->storeAs(
+              'public',$imageName);
             $is_file_uploaded = $file->storeAs(
-                'public-uploads',$imageName, 'dropbox'
+                'public',$imageName, 'dropbox'
             );
             $student->birimage = $imageName;
 
@@ -46,8 +49,10 @@ class StudentController extends Controller
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
            // $is_file_uploaded = Storage::disk('dropbox')->storeAs('imageName')->put('public-uploads', $imageName);
+           $is_file_uploaded_local = $file->storeAs(
+            'public',$imageName);
            $is_file_uploaded = $file->storeAs(
-            'public-uploads/',$imageName, 'dropbox'
+            'public',$imageName, 'dropbox'
         );
         $student->idimage = $imageName;
 
@@ -58,9 +63,10 @@ class StudentController extends Controller
             $file = $request->file('pimage'); //file src
             $imageName = $file->getClientOriginalName();
             $imageName = date('Y-m-d-H-i-s').'_'.$imageName;
-         //   $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads', $file);
+         $is_file_uploaded_local = $file->storeAs(
+          'public',$imageName);
          $is_file_uploaded = $file->storeAs(
-            'public-uploads/',$imageName, 'dropbox'
+            'public',$imageName, 'dropbox'
         );
         $student->pimage = $imageName;
  
@@ -78,10 +84,17 @@ class StudentController extends Controller
 
     public function payment(Request $request)
     {
-        $student=new Student();
-      $student::find( Auth::id());
-        $student->payment = $request->payment;
+      $student = Student::find(Auth::id());
+$balnce=$student->payment;
+$balnce+=$request->payment;
+
+
+
+      $student->payment = $balnce;
         $student->save();
+        toast('Payment Success Please Check Your Balance', 'success');
+        return redirect('/dashboard');
+
     }
 
 }

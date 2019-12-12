@@ -27,6 +27,6 @@ return view('template.CForm');
      $course->save();
      toast('Your Course Data as been submited!', 'success');
 
-     return view ('template.Dashboard');
+     return redirect('/dashboard');
     }
 }

@@ -28,15 +28,15 @@
                 <!-- houre price -->
                 <input type="text" class="form-control mb-4" name="price" placeholder="houre price" value="{{ old('price') }}">
                 <!-- img -->
-                <label>Upload birthdate image</label>
+                <label>Upload Personal image</label>
                 <input type="file" name="pimage" value="{{ old('pimage') }}">
                 <br>
 
-                <label>Upload ID image</label>
+                <label>Upload birth date image</label>
                 <input type="file" name="birimage" value="{{ old('birimage') }}">
                 <br>
 
-                <label>Upload Personal image</label>
+                <label>Upload Personal ID image</label>
                 <input type="file" name="idimage" value="{{ old('idimage') }}">
 
 

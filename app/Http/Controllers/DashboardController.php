@@ -17,6 +17,7 @@ class DashboardController extends Controller
      // dd( $url = Storage::url('2019-12-05-14-12-27_1.png'));
 
     $id= Auth::id();
+
      $Student = Student::where('user_id',$id)->get()->first();
      $course=Student::find($id)->Course;
 

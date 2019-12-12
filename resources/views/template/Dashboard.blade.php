@@ -21,7 +21,7 @@
                     <div class="col-md-6 col-lg-3 ftco-animate" style="margin:70px;border-color: #263534  !important;border-style: double!important;">
                         <div class="staff">
                             <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(images/teacher-1.jpg);"></div>
+                                <div class="img align-self-stretch" style="background-image: url({{asset('storage/'.$Student->pimage)}});"></div>
                             </div>
                                                                 <?php $sum=0;
                                                                 $hours=0;
