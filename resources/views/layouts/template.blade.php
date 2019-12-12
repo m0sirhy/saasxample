@@ -2,12 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>Kiddos - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Saas Example On Heroku</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('template/css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('template/css/animate.css')}}">
@@ -33,7 +30,20 @@
                     <div class="row d-flex">
                         <div class="col-md-5 pr-4 d-flex topper align-items-center">
                             <div class="icon bg-fifth mr-2 d-flex justify-content-center align-items-center"><span class="icon-map"></span></div>
-                            <span class="text">198 West 21th Street, Suite 721 New York NY 10016</span>
+                            <span class="text">
+                                <script> 
+                                  
+                                  // Use of Date.now() function 
+                                  var d = Date(Date.now()); 
+                                  
+                                  // Converting the number of millisecond in date string 
+                                  a = d.toString() 
+                                  
+                                  // Printing the current date                     
+                                  document.write(a)  
+                                  
+                                </script> 
+                                </span>
                         </div>
                         <div class="col-md pr-4 d-flex topper align-items-center">
                             <div class="icon bg-secondary mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
@@ -50,18 +60,31 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
         <div class="container d-flex align-items-center">
-            <a class="navbar-brand" href="index.html">admin</a>
+            <a class="navbar-brand" href="index.html">SaasXample</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
           </button>
             <!-- <p class="button-custom order-lg-last mb-0"><a href="appointment.html" class="btn btn-secondary py-2 px-3">Make An Appointment</a></p> -->
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link pl-0">Home</a></li>
-                    <li class="nav-item"><a href="addCourse.html" class="nav-link">addCourse</a></li>
-                    <li class="nav-item"><a href="VeiwStudent.html" class="nav-link">VeiwStudent</a></li>
-                    <li class="nav-item active"><a href="addStudent.html" class="nav-link">addStudent</a></li>
-                </ul>
+                        @if (Route::has('login'))
+                        @auth
+                    <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link pl-0">Home</a></li>
+                    @else
+                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link pl-0">Home</a></li>
+                    @endauth
+                    @endif
+
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">VeiwStudent</a></li>
+                   
+                   
+                    @if (Route::has('login'))
+                        @auth <li class="nav-item active"><a href="{{ route('login') }}" class="nav-link">AddStudent</a></li>
+                   
+                        <li class="nav-item active"><a href="/Course" class="nav-link">AddCourse</a></li>
+                        @endauth
+                        @endif
+                    </ul>
             </div>
         </div>
     </nav>
@@ -90,7 +113,7 @@
                 <div class="ftco-footer-widget mb-5">
                     <h2 class="ftco-heading-2">Recent Blog</h2>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url({{asset('template/images/image_1.jpg')}});"></a>
                         <div class="text">
                             <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                             <div class="meta">
@@ -178,7 +201,6 @@
 <script src="{{asset('template/js/aos.js')}}"></script>
 <script src="{{asset('template/js/jquery.animateNumber.min.js')}}"></script>
 <script src="{{asset('template/js/scrollax.min.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="{{asset('template/js/google-map.js')}}"></script>
 <script src="{{asset('template/js/main.js')}}"></script>
 

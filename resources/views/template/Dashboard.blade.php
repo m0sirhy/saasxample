@@ -5,6 +5,7 @@
 
     <div class="row">
         <form action="/pay" method="POST">
+        @csrf
             <input type="text" placeholder="pay a payment" name="payment">
             <input type="submit" name="pay" value="pay">
 
@@ -22,13 +23,29 @@
                             <div class="img-wrap d-flex align-items-stretch">
                                 <div class="img align-self-stretch" style="background-image: url(images/teacher-1.jpg);"></div>
                             </div>
+                                                                <?php $sum=0;
+                                                                $hours=0;
+                                                                
+                                                                ?>
+                    @foreach ($course as $c)
+                        <?php $sum+=$c->grade ;
+                        $hours+=$c->hours;
+                        ?>
+                    @endforeach
                             <div class="text pt-3 text-center">
-                                <h3>name : , id: </h3>
-                                <span class="position mb-2">level: </span>
+                                <h3>name :{{$Student->fname }},{{$Student->lname}}</h3>
+                                {{-- <span class="position mb-2">Enroll Year:{{$Student->$enrollyear}} </span> --}}
                                 <div class="faded">
                                     <p>course: </p>
-                                    <p>the rest of the bill: </p>
-                                    <p>gpa: </p>
+                                    <p>the  bill:{{$Student->price * $hours -$Student->payment}} </p>
+                                    <p>gpa:{{$sum/$course->count()}} </p>
+                            <p>Adress: {{$Student->address}} </p>
+                                                        <p>Birth Of Date: {{$Student->birthdate}} </p>
+                            <p>Hour price: {{$Student->price}} </p>
+                                                        <p>Spec: {{$Student->spec}} </p>
+
+
+
 
                                     <ul class="ftco-social text-center">
                                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -40,9 +57,10 @@
                             </div>
                         </div>
                     </div>
+                                    <?php $sum=0?>
+
                     @foreach ($course as $c)
                         
-                   
                     <div class="col col-lg-2 ftco-animate">
                         <div class="text bg-light p-4">
                         <h3><a href="#">{{$c->name}}</a></h3>
@@ -52,6 +70,7 @@
                         <p><span>Class Wight:</span>{{$c->hours}}</p>
                         <p><span>Class grade:</span>{{$c->grade}}</p>
                         </div>
+                        <?php $sum+=$c->grade ;?>
                     </div>
                     
                     @endforeach

@@ -16,12 +16,11 @@ class DashboardController extends Controller
     {
      // dd( $url = Storage::url('2019-12-05-14-12-27_1.png'));
 
-     $course=Course::find(1)->student;
     $id= Auth::id();
      $Student = Student::where('user_id',$id)->get()->first();
-     $course=Course::find(1)->student;
-   $im=  $Student->idimage;
+     $course=Student::find($id)->Course;
 
+   $im=  $Student->idimage;
 
         return view('template.Dashboard',compact('Student','course'));
     }

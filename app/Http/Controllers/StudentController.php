@@ -79,7 +79,7 @@ class StudentController extends Controller
     public function payment(Request $request)
     {
         $student=new Student();
-      $student::find($request->id);
+      $student::find( Auth::id());
         $student->payment = $request->payment;
         $student->save();
     }

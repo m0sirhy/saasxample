@@ -15,10 +15,10 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('template.Home');
+})->name('home');
 Route::middleware('auth')->group(function () {
- Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home', 'StudentController@index');
 Route::get('/Student', 'StudentController@index');
 Route::post('/Student', 'StudentController@save');
 Route::post('/drop', 'StudentController@drop');
@@ -27,7 +27,7 @@ Route::post('/pay', 'StudentController@payment');
 
 Route::post('/Course', 'CourseController@save');
 });
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
 Route::get('/test', function(){
