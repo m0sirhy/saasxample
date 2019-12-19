@@ -6,7 +6,7 @@
     <div class="row">
         <form action="/pay" method="POST">
         @csrf
-            <input type="text" placeholder="pay a payment" name="payment">
+            <input type="text" placeholder="pay a payment"  required name="payment">
             <input type="submit" name="pay" value="pay">
 
 
