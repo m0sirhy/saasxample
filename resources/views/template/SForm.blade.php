@@ -1,7 +1,45 @@
  @extends('layouts.template') @section('content')
 <!-- Default form contact -->
 <div class="container-sm">
+    
+    @if ($message = Session::get('success'))
+
+    <div class="alert alert-success alert-block">
+
+        <button type="button" class="close" data-dismiss="alert">×</button>
+
+            <strong>{{ $message }}</strong>
+
+    </div>
+
+    <img src="images/{{ Session::get('image') }}">
+
+    @endif
+
+
+
+    @if (count($errors) > 0)
+
+        <div class="alert alert-danger">
+
+            <strong>Whoops!</strong> There were some problems with your input.
+
+            <ul>
+
+                @foreach ($errors->all() as $error)
+
+                    <li>{{ $error }}</li>
+
+                @endforeach
+
+            </ul>
+
+        </div>
+
+    @endif
     <div class="row">
+           
+
         <div class="col-sm">
             <form class="text-center border border-light p-5" action="/Student" method="POST" id="upload_form" enctype="multipart/form-data" style="margin:70px;border-color: #263534  !important;border-style: double!important;">
                 @csrf
@@ -13,7 +51,7 @@
                 <!-- lName -->
                 <input type="text" class="form-control mb-4" placeholder="LasttName" name="lname" required value="{{ old('lname') }}">
                 <!-- enrollYear -->
-                <input type="text" class="form-control mb-4" placeholder="enrollYear" required  value=" {{ old('enrollyear') }}" name="enrollyear">
+                <input type="text" class="form-control mb-4" placeholder="enrollYear"   value=" {{ old('enrollyear') }}" required name="enrollyear">
                 <!-- phoneNumber -->
                 <input type="text" class="form-control mb-4" placeholder="phoneNumber" required name="phone" value="{{ old('phone') }}">
                 <!-- Address -->

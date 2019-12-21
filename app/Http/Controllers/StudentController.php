@@ -21,6 +21,15 @@ class StudentController extends Controller
     public function save(Request $request)
     {
      
+      request()->validate([
+
+        'birimage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'idimage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'pimage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+    ]);
+
+
         $student = new Student();
         $student->user_id = Auth::id();
         $student->fname = $request->fname;
