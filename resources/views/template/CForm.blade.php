@@ -11,7 +11,7 @@
 
                 <!-- Course name -->
                 <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Course name" name="name" required value="{{old('name')}}">
-
+                
                 <!-- instractour -->
                 <input type="text" class="form-control mb-4" placeholder="course instractour" name="instractor" required value="{{old('instractor')}}">
                 <!-- Course Hours -->

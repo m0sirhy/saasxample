@@ -36,7 +36,7 @@
                                 <h3>name :{{$Student->fname }},{{$Student->lname}}</h3>
                                 {{-- <span class="position mb-2">Enroll Year:{{$Student->$enrollyear}} </span> --}}
                                 <div class="faded">
-                                    <p>course: </p>
+                                 
                                     <p>the  bill:{{$Student->price * $hours -$Student->payment}} </p>
                                     <p>gpa:{{$sum/$course->count()}} </p>
                             <p>Adress: {{$Student->address}} </p>
